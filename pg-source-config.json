@@ -1,0 +1,21 @@
+{
+    "name": "source-user-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+	    "database.hostname": "host.docker.internal",
+        "database.port": "5432",
+        "database.user": "etl",
+	    "database.password": "12345678",
+        "database.dbname": "cdc",
+        "plugin.name": "pgoutput",
+        "database.server.name": "source",
+        "key.converter.schemas.enable": "false",
+        "value.converter.schemas.enable": "false",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+	    "table.include.list": "public.users",
+        "slot.name" : "dbz_sales_transaction_slot" 
+    }
+}
